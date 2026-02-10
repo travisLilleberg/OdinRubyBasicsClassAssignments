@@ -49,7 +49,7 @@ class Tree
   def balanced?
     return true if @root.nil?
 
-    balanced_recur(@root, 0) != -1
+    balanced_recur(@root) != -1
   end
 
   def rebalance
@@ -78,15 +78,15 @@ class Tree
     )
   end
 
-  def balanced_recur(node, height)
+  def balanced_recur(node)
     return 0 if node.nil?
 
-    l_height = balanced_recur(node.left, 0)
+    l_height = balanced_recur(node.left)
     return -1 if l_height == -1
 
-    r_height = balanced_recur(node.right, 0)
+    r_height = balanced_recur(node.right)
     return -1 if r_height == -1 || (l_height - r_height).abs > 1
 
-    height + [l_height, r_height].max + 1
+    [l_height, r_height].max + 1
   end
 end
